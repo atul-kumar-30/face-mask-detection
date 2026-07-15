@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaskGuard AI - Face Mask Detection</title>
+    <!-- Modern Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Abstract Background Elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="logo">
+                <i class="fa-solid fa-shield-virus"></i>
+                <h1>MaskGuard AI</h1>
+            </div>
+            <div class="status-indicator">
+                <span class="dot offline" id="status-dot"></span>
+                <span id="status-text">Camera Offline</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Video Container -->
+            <div class="video-section">
+                <div class="video-glass-panel">
+                    <div class="video-placeholder" id="video-placeholder">
+                        <i class="fa-solid fa-video-slash"></i>
+                        <p>Webcam is currently off</p>
+                    </div>
+                    <img id="video-stream" src="" alt="Video Stream" style="display: none;">
+                    
+                    <div class="corner-accents">
+                        <span class="tl"></span><span class="tr"></span>
+                        <span class="bl"></span><span class="br"></span>
+                    </div>
+                </div>
+                
+                <!-- Controls -->
+                <div class="controls glass-panel">
+                    <button id="btn-start" class="btn primary-btn">
+                        <i class="fa-solid fa-play"></i> Start Detection
+                    </button>
+                    <button id="btn-stop" class="btn secondary-btn" disabled>
+                        <i class="fa-solid fa-stop"></i> Stop Stream
+                    </button>
+                </div>
+            </div>
+
+            <aside class="info-sidebar glass-panel">
+                <h2>Live Dashboard</h2>
+                <p class="subtitle">Real-time Session Data</p>
+
+                <div class="stat-card">
+                    <div class="icon-box green">
+                        <i class="fa-solid fa-mask"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Masks Detected</h3>
+                        <p id="mask-count">0</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="icon-box red" style="background: rgba(239, 68, 68, 0.2); color: var(--accent-red);">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Violations</h3>
+                        <p id="no-mask-count">0</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="icon-box blue">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>AI Confidence</h3>
+                        <p id="confidence-val">0.00%</p>
+                    </div>
+                </div>
+                
+                <div class="info-text">
+                    <p><i class="fa-solid fa-circle-info"></i> The system utilizes a deep learning CNN to map facial features and classify mask usage dynamically.</p>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
